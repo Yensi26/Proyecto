@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="APP.App">
+	<Application.Resources>
+        <ResourceDictionary>
+
+            <!-- Locator -->
+            <infra:InstanceLocator x:Key="Locator"></infra:InstanceLocator>
+
+            <!-- Parameters -->
+            <x:String x:Key="URLBase">http://sportsrd.somee.com</x:String>
+            <x:String x:Key="URLBase2">http://sportsrd2.somee.com</x:String>
+
+            <Color x:Key="MainColor">#0099A9</Color>
+            <Color x:Key="FontColor">#0D0D0D</Color>
+            <Color x:Key="AccentColor1">#00A986</Color>
+            <Color x:Key="AccentColor2">#FF0000</Color>
+            <Color x:Key="BackgroundColor">#FAFFFF</Color>
+        </ResourceDictionary>
+    
+    </Application.Resources>
+</Application>
