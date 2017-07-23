@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain
 {
@@ -23,11 +24,13 @@ namespace Domain
         [Required(ErrorMessage = "The field {0} is required")]
         [MaxLength(20, ErrorMessage ="The maximun length for field {0} us {1} characters.")]
         [Display(Name = "Username")]
+        [Index("User_Username_Index", IsUnique = true)]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "The field {0} is required")]
         [MaxLength(50, ErrorMessage = "The maximun length for field {0} us {1} characters.")]
         [Display(Name = "Email")]
+        [Index("User_Email_Index", IsUnique = true)]
         public string Email { get; set; }
     }
 }

@@ -9,139 +9,115 @@ using System.Web;
 using System.Web.Mvc;
 using Backend.Models;
 using Domain;
-using Backend.Helpers;
-using Backend.Classes;
 
 namespace Backend.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class UsersController : Controller
+    public class ExcercisesController : Controller
     {
         private DataContextLocal db = new DataContextLocal();
 
-        // GET: Users
+        // GET: Excercises
         public async Task<ActionResult> Index()
         {
-            return View(await db.Users.ToListAsync());
+            var excercises = db.Excercises.Include(e => e.Rutine);
+            return View(await excercises.ToListAsync());
         }
 
-        // GET: Users/Details/5
+        // GET: Excercises/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = await db.Users.FindAsync(id);
-            if (user == null)
+            Excercise excercise = await db.Excercises.FindAsync(id);
+            if (excercise == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(excercise);
         }
 
-        // GET: Users/Create
+        // GET: Excercises/Create
         public ActionResult Create()
         {
+            ViewBag.RutineId = new SelectList(db.Rutines, "RutineId", "Name");
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Excercises/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(UserView view)
+        public async Task<ActionResult> Create([Bind(Include = "ExcerciseId,Name,Picture,RutineId,Sets,Repetitions,Description,Duration,Rest")] Excercise excercise)
         {
             if (ModelState.IsValid)
             {
-                var pic = string.Empty;
-                var folder = "~/Content/Users";
-
-                if (view.PictureFile != null)
-                {
-                    pic = FilesHelper.UploadPhoto(view.PictureFile, folder);
-                    pic = string.Format("{0}/{1}", folder, pic);
-                }
-
-                var user = ToUser(view);
-                user.Picture = pic;
-                db.Users.Add(user);
+                db.Excercises.Add(excercise);
                 await db.SaveChangesAsync();
-                UsersHelper.CreateUserASP(view.Email, "User", view.Password);
                 return RedirectToAction("Index");
-
             }
 
-            return View(view);
+            ViewBag.RutineId = new SelectList(db.Rutines, "RutineId", "Name", excercise.RutineId);
+            return View(excercise);
         }
 
-        private User ToUser(UserView view)
-        {
-            return new User
-            {
-                Email = view.Email,
-                FirstName = view.FirstName,
-                LastName = view.LastName,
-                Picture = view.Picture,
-                UserId = view.UserId,
-                Username = view.Username,
-            };
-        }
-
-        // GET: Users/Edit/5
+        // GET: Excercises/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = await db.Users.FindAsync(id);
-            if (user == null)
+            Excercise excercise = await db.Excercises.FindAsync(id);
+            if (excercise == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            ViewBag.RutineId = new SelectList(db.Rutines, "RutineId", "Name", excercise.RutineId);
+            return View(excercise);
         }
 
-        // POST: Users/Edit/5
+        // POST: Excercises/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "UserId,FirstName,LastName,Username,Email")] User user)
+        public async Task<ActionResult> Edit([Bind(Include = "ExcerciseId,Name,Picture,RutineId,Sets,Repetitions,Description,Duration,Rest")] Excercise excercise)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(excercise).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(user);
+            ViewBag.RutineId = new SelectList(db.Rutines, "RutineId", "Name", excercise.RutineId);
+            return View(excercise);
         }
 
-        // GET: Users/Delete/5
+        // GET: Excercises/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = await db.Users.FindAsync(id);
-            if (user == null)
+            Excercise excercise = await db.Excercises.FindAsync(id);
+            if (excercise == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(excercise);
         }
 
-        // POST: Users/Delete/5
+        // POST: Excercises/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            User user = await db.Users.FindAsync(id);
-            db.Users.Remove(user);
+            Excercise excercise = await db.Excercises.FindAsync(id);
+            db.Excercises.Remove(excercise);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
