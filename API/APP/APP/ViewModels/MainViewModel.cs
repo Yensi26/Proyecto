@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace APP.ViewModels
+﻿namespace APP.ViewModels
 {
     public class MainViewModel
     {
-        public LoginViewModel Login { set; get; }
+        public LoginViewModel Login { get; set; }
 
-        #region Constructor
         public MainViewModel()
         {
             Login = new LoginViewModel();
         }
-        #endregion
     }
 }
