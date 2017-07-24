@@ -1,4 +1,4 @@
-﻿namespace Sports.Classes
+﻿namespace APP.Classes
 {
     public class UserRequest
     {

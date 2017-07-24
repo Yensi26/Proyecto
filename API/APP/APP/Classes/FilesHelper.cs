@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Sports.Classes
+namespace APP.Classes
 {
     public class FilesHelper
     {

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Sports.Classes
+namespace APP.Classes
 {
     public class TokenResponse
     {
