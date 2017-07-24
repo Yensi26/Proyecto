@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using APP.Models;
 
-namespace Sports.Services
+namespace APP.Services
 {
     public class ApiService
     {
