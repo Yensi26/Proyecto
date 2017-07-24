@@ -6,9 +6,130 @@
     Title="GYM"
     BackgroundColor="{StaticResource BackgroundColor}"
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
+    <ScrollView
+        BindingContext="{Binding Login}">
+        <StackLayout
+            Spacing="10"
+            Padding="8">
+            <Image
+                Source="if_Weight_2138354.png">
+            </Image>
+            <Label
+                Text="Login"
+                FontSize="Large"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="Navy">
+            </Label>
+            <Grid
+                Padding="30,0,30,0">
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Text=""
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        TextColor="{StaticResource BackgroundColor}">
+                    </Label>
+                    <Entry
+                        Grid.Column="1"
+                        Text="{Binding Email}"
+                        Placeholder="Introduzca su Email..."
+                        Keyboard="Email"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        BackgroundColor="{StaticResource BackgroundColor}">
+                    </Entry>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Text=""
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        TextColor="{StaticResource BackgroundColor}">
+                    </Label>
+                    <Entry
+                        Grid.Column="1"
+                        Text="{Binding Password}"
+                        Placeholder="Introduzca su Contraseña..."
+                        IsPassword="True"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        BackgroundColor="{StaticResource BackgroundColor}">
+                    </Entry>
+                </Grid>
+            </Grid>
+            <StackLayout
+                Padding="30,0,30,0"
+                Orientation="Horizontal">
+                <Switch
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    IsToggled="{Binding IsRemembered}">
+                </Switch>
+                <Label
+                    Text="Rememberme"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    TextColor="Navy">
+                </Label>
+            </StackLayout>
+            <ActivityIndicator
+                IsRunning="{Binding IsRunning}">
+            </ActivityIndicator>
+            <StackLayout
+                Padding="30,0,30,0"
+                Orientation="Vertical">
+                <Button
+                    Command="{Binding LoginCommand}"
+                    IsEnabled="{Binding IsEnabled}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="Orange"
+                    TextColor="White"
+                    Text="Login">
+                </Button>
+                <Button
+                    Command="{Binding LoginFacebookCommand}"
+                    IsEnabled="{Binding IsEnabled}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="Navy"
+                    TextColor="White"
+                    Text="Login With Facebook">
+                </Button>
+                <Button
+                    Command="{Binding RegisterCommand}"
+                    IsEnabled="{Binding IsEnabled}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="Purple"
+                    TextColor="White"
+                    Text="Register New User">
+                </Button>
+                <Label
+                    Text="¿Olvidaste tu contraseña?"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    TextColor="Navy">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>
