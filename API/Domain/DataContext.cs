@@ -10,5 +10,9 @@ namespace Domain
         }
 
         public DbSet<User> Users { get; set; }
+
+        public System.Data.Entity.DbSet<Domain.Rutine> Rutines { get; set; }
+
+        public System.Data.Entity.DbSet<Domain.Excercise> Excercises { get; set; }
     }
 }

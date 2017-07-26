@@ -163,7 +163,7 @@ namespace APP.ViewModels
             //var parameters = dataService.First<Parameter>(false);
 
             //var token = await apiService.GetToken(parameters.URLBase, Email, Password);
-            var token = await apiService.GetToken("http://arrabacus.somee.com", Email, Password);
+            var token = await apiService.GetToken("http://apigym.azurewebsites.net", Email, Password);
 
             if (token == null)
             {
@@ -184,7 +184,7 @@ namespace APP.ViewModels
             }
 
             //var response = await apiService.GetUserByEmail(parameters.URLBase,
-            var response = await apiService.GetUserByEmail("http://arrabacus.somee.com",
+            var response = await apiService.GetUserByEmail("http://apigym.azurewebsites.net",
                 "/api",
                 "/Users/GetUserByEmail",
                 token.TokenType,

@@ -11,7 +11,7 @@
             <infra:InstanceLocator x:Key="Locator"></infra:InstanceLocator>
 
             <!-- Parameters -->
-            <x:String x:Key="URLBase">http://arrabacus.somee.com</x:String>
+            <x:String x:Key="URLBase">http://apigym.azurewebsites.net</x:String>
 
             <Color x:Key="MainColor">#0099A9</Color>
             <Color x:Key="FontColor">#0D0D0D</Color>
